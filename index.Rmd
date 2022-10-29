@@ -1,0 +1,21 @@
+---
+title: "Welcome to Siyue's Website"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+## Basic information
+
+**Name**: Siyue Gao
+
+**Hometown**: Beijing, China
+
+**Fun Fact**: 1000+ hours reached in the World's Best game - the Legend of Zelda: Breath of the Wild
+
+**More about me**:
+
+I am a 2nd-year MPH Candidate in [Department of Environmental Health Sciences](https://www.publichealth.columbia.edu/academics/departments/environmental-health-sciences-ehs), with a Certificate in Applied Biostatistics and Public Health Data Science, at [Columbia University Mailman School of Public Health](https://www.publichealth.columbia.edu).
+
+I am working as a data analyst with [Dr. Ana Navas-Acien](https://www.publichealth.columbia.edu/people/our-faculty/an2737) on metal exposure and early cardiovascular risk in adult e-cigarette users.
