@@ -30,7 +30,7 @@ Please visit my [Experience page](experience.html) for more information.
 
 I enjoyed my life with my favorite residents on the Island, in [Animal Crossing](https://www.youtube.com/watch?v=_3YNL0OWio0).
 
-Here are some screenshots showing the cosy life we spent together.
+Here are some screenshots showing the cozy time we spent together.
 
 <center>
   <img src = "images/kid_cat.jpg" style = "width: 90%">
@@ -42,3 +42,8 @@ Here are some screenshots showing the cosy life we spent together.
   <img src = "images/all_residents.jpg" style = "width: 90%">
   <figcaption>All residents celebrating the completion of a new bridge, with Tom Nook and Isabelle</figcaption>
 </center>
+
+<br>
+
+## Other Stuff
+

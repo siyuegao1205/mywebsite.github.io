@@ -66,46 +66,36 @@ output:
 
 *   Project name: Metal Exposure and Early Cardiovascular Risk in Adult E-Cigarette Users.
 
-*   Responsible for database management, generated basic statistics summary tables by tidyverse, kableExtra, and table1 packages in R, reported the results during bi-weekly meetings, to provide a reference on subsequent recruitment.
+*   Responsible for database management, generated basic statistics summary tables by tidyverse, kableExtra, and table1 packages in R, reported the results during bi-weekly meetings, to provide a reference on subsequent recruitment
 
-*   Independently visualized and analyzed the differences of perceptions about vaping of the currently recruited 160 participants by ggplot2 package in R.
+*   Independently visualized and analyzed the differences of perceptions about vaping of the currently recruited 160 participants by ggplot2 package in R
 
 <br>
 
 ## Research Experience
 
 <p style="text-align:left;">
-    **Columbia University in the City of New York**
-    <span style="float:right;">
-    New York, United States
-    </span>
-</p>
-
-<p style="text-align:left;">
-    **_Arsenic and Related Effects on Cardiovascular Disease_**
+    **Arsenic and Related Effects on Cardiovascular Disease**
     <span style="float:right;">
     February 2022-April 2022
     </span>
 </p>
 
-*   Performed literature reviews on arsenic exposure and its related effects on cardiovascular disease, including impact of different doses of exposure, current findings in occupational studies, and management options for harm reduction.
+*   Faculty Mentor: Anne Nigra, Assistant Professor in the Department of Environmental Health Sciences at Columbia University in the City of New York
 
-*   Completed a 2,600 words research paper.
+*   Performed literature reviews on arsenic exposure and its related effects on cardiovascular disease, including impact of different doses of exposure, current findings in occupational studies, and management options for harm reduction
 
-<p style="text-align:left;">
-    **China Agricultural University**
-    <span style="float:right;">
-    Beijing, China
-    </span>
-</p>
+*   Completed a 2,600 words research paper
 
 <p style="text-align:left;">
-    **_Construction of Chondroitin Sulfate Biosensor Research Program_**
+    **Construction of Chondroitin Sulfate Biosensor**
     <span style="float:right;">
     May 2018-May 2019
     </span>
 </p>
 
-*   Conducted lab experiments to develop a novel chondroitin sulfate fluorescent biosensor, including sample preparation, linear response range verification, sensitivity and specificity identification, and real-world application in commercial products.
+*   Faculty Mentor: Zhiyi Yao, Associate Professor in the College of Food Science and Nutritional Engineering at China Agricultural University
 
-*   Analyzed program statistics and created data visualization for final publication, including graphs and charts, by Origin.
+*   Conducted lab experiments to develop a novel chondroitin sulfate fluorescent biosensor, including sample preparation, linear response range verification, sensitivity and specificity identification, and real-world application in commercial products
+
+*   Analyzed program statistics and created data visualization for final publication, including graphs and charts, by Origin
