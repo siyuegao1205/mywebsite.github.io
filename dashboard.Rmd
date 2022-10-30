@@ -51,11 +51,9 @@ ny_noaa_sub %>%
     x = ~ date,
     y = ~ mean_tmin,
     type = "scatter",
-    mode = "lines",
-    alpha = .5
+    mode = "lines"
   ) %>% 
   layout(
-    title = "Monthly Average Minimum Temperature from 2000 to 2010",
     xaxis = list(title = "Date"),
     yaxis = list(title = "Average Minimum Temperature\n(degrees C)")
   )
@@ -79,7 +77,6 @@ ny_noaa_sub %>%
     colors = "Set2"
   ) %>% 
   layout(
-    title = "Distribution of Maximum Temperature by Month",
     xaxis = list(title = "Month"),
     yaxis = list(title = "Maximum Temperature\n(degrees C)")
   )
@@ -105,7 +102,6 @@ ny_noaa_sub %>%
   ) %>% 
   layout(
     barmode = "stack",
-    title = "Number of Weather Stations Functioning by Year",
     xaxis = list(title = "Year"),
     yaxis = list(title = "Number of Weather Stations"),
     legend = list(title = list(text = "Month"))

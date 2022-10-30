@@ -66,8 +66,7 @@ ny_noaa_sub %>%
     x = ~ date,
     y = ~ mean_tmin,
     type = "scatter",
-    mode = "lines",
-    alpha = .5
+    mode = "lines"
   ) %>% 
   layout(
     title = "Monthly Average Minimum Temperature from 2000 to 2010",
