@@ -1,0 +1,76 @@
+---
+title: "Plotly"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	warning = FALSE,
+	message = FALSE
+)
+```
+
+I am going to make some plotly plots based on [Instacart](https://p8105.com/dataset_instacart.html).
+
+
+## Load packages and data
+
+```{r}
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+library(RColorBrewer)
+```
+
+
+Let's get some data and preprocess it.
+
+```{r}
+data("instacart")
+
+set.seed(12345)
+
+instacart_sub = instacart %>% 
+  sample_frac(0.25)
+```
+
+There are `r nrow(instacart)` observations in the `instacart` dataset. To get a smaller dataset, I would like to take a 25% random sample (`instacart_sub`) from it.
+
+
+## Plotly bar plot
+
+```{r}
+instacart_sub %>% 
+  group_by(department, aisle) %>% 
+  summarise(
+    order_count = n()
+  ) %>% 
+  arrange(order_count) %>% 
+  ungroup() %>% 
+  head(20) %>% 
+  mutate(
+    aisle = str_to_title(aisle),
+    department = str_to_title(department),
+    aisle = fct_reorder(aisle, order_count)
+  ) %>%
+  plot_ly(
+    x = ~ order_count,
+    y = ~ aisle,
+    color = ~ department,
+    type = "bar",
+    colors = "Accent"
+  ) %>% 
+  layout(
+    title = "Top 20 Least Popular Aisles",
+    xaxis = list(title = "Number of Ordered Times"),
+    yaxis = list(title = "Name of Aisle"),
+    legend = list(title = list(text = "Department")),
+    autosize = FALSE
+  )
+```
+
+This bar plot shows the top 20 least popular aisles from all `r n_distinct(instacart_sub$department)`departments. For instance, products from the `Beauty` aisle are only ordered 63 times in this 25% random sample of `instacart` dataset.

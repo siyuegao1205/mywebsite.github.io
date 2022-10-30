@@ -1,5 +1,5 @@
 ---
-title: "Welcome to Siyue's Website"
+title: "Welcome to Siyue's Website!"
 output: 
   html_document:
     toc: true
@@ -47,3 +47,4 @@ Here are some screenshots showing the cozy time we spent together.
 
 ## Other Stuff
 
+I made some plotly plots on [Instacart](https://p8105.com/dataset_instacart.html) dataset. Here's a direct [link](plotly.html) to it.

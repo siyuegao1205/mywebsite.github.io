@@ -11,7 +11,7 @@
 
 
 
-<title>Experience</title>
+<title>Plotly</title>
 
 <script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -35,6 +35,13 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -363,102 +370,65 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Experience</h1>
+<h1 class="title toc-ignore">Plotly</h1>
 
 </div>
 
 
-<p><br></p>
-<div id="education" class="section level2">
-<h2>Education</h2>
-<p style="text-align:left;">
-<strong>Columbia University in the City of New York</strong> <span
-style="float:right;"> New York, United States </span>
-</p>
-<p style="text-align:left;">
-<strong><em>Master of Public Health (MPH)</em></strong>, Environmental
-Health Sciences <span style="float:right;"> September 2021-Expected May
-2023 </span>
-</p>
-<ul>
-<li><p>Certificate in Applied Biostatistics and Public Health Data
-Science</p></li>
-<li><p>Relevant Courses: Analysis of Environmental Health Data, Analysis
-of Categorical Data, Applied Regression, Data Science, Statistical
-Computing with SAS, Risk Assessment, Management, and
-Communication</p></li>
-</ul>
-<p style="text-align:left;">
-<strong>China Agricultural University</strong> <span
-style="float:right;"> Beijing, China </span>
-</p>
-<p style="text-align:left;">
-<strong><em>Bachelor of Engineering (BEng)</em></strong>, Food Quality
-and Safety <span style="float:right;"> September 2016-June 2020 </span>
-</p>
-<ul>
-<li><p>GPA: 3.8/4.0</p></li>
-<li><p>Relevant Courses: Biochemistry, Biostatistics and Experiment
-Design, Food Analysis, Food Hygiene and Safety Control, Food Toxicology,
-Fundamental Nutrition</p></li>
-</ul>
-<p><br></p>
+<p>I am going to make some plotly plots based on <a
+href="https://p8105.com/dataset_instacart.html">Instacart</a>.</p>
+<div id="load-packages-and-data" class="section level2">
+<h2>Load packages and data</h2>
+<pre class="r"><code>library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+library(RColorBrewer)</code></pre>
+<p>Let’s get some data and preprocess it.</p>
+<pre class="r"><code>data(&quot;instacart&quot;)
+
+set.seed(12345)
+
+instacart_sub = instacart %&gt;% 
+  sample_frac(0.25)</code></pre>
+<p>There are 1384617 observations in the <code>instacart</code> dataset.
+To get a smaller dataset, I would like to take a 25% random sample
+(<code>instacart_sub</code>) from it.</p>
 </div>
-<div id="intership-experience" class="section level2">
-<h2>Intership Experience</h2>
-<p style="text-align:left;">
-<strong>Columbia University in the City of New York</strong> <span
-style="float:right;"> New York, United States </span>
-</p>
-<p style="text-align:left;">
-<strong><em>Data Analyst, Department of Environmental Health
-Sciences</em></strong> <span style="float:right;"> May 2022-Present
-</span>
-</p>
-<ul>
-<li><p>Project name: Metal Exposure and Early Cardiovascular Risk in
-Adult E-Cigarette Users.</p></li>
-<li><p>Responsible for database management, generated basic statistics
-summary tables by tidyverse, kableExtra, and table1 packages in R,
-reported the results during bi-weekly meetings, to provide a reference
-on subsequent recruitment</p></li>
-<li><p>Independently visualized and analyzed the differences of
-perceptions about vaping of the currently recruited 160 participants by
-ggplot2 package in R</p></li>
-</ul>
-<p><br></p>
-</div>
-<div id="research-experience" class="section level2">
-<h2>Research Experience</h2>
-<p style="text-align:left;">
-<strong>Arsenic and Related Effects on Cardiovascular Disease</strong>
-<span style="float:right;"> February 2022-April 2022 </span>
-</p>
-<ul>
-<li><p>Faculty Mentor: Anne Nigra, Assistant Professor in the Department
-of Environmental Health Sciences at Columbia University in the City of
-New York</p></li>
-<li><p>Performed literature reviews on arsenic exposure and its related
-effects on cardiovascular disease, including impact of different doses
-of exposure, current findings in occupational studies, and management
-options for harm reduction</p></li>
-<li><p>Completed a 2,600 words research paper</p></li>
-</ul>
-<p style="text-align:left;">
-<strong>Construction of Chondroitin Sulfate Biosensor</strong> <span
-style="float:right;"> May 2018-May 2019 </span>
-</p>
-<ul>
-<li><p>Faculty Mentor: Zhiyi Yao, Associate Professor in the College of
-Food Science and Nutritional Engineering at China Agricultural
-University</p></li>
-<li><p>Conducted lab experiments to develop a novel chondroitin sulfate
-fluorescent biosensor, including sample preparation, linear response
-range verification, sensitivity and specificity identification, and
-real-world application in commercial products</p></li>
-<li><p>Analyzed program statistics and created data visualization for
-final publication, including graphs and charts, by Origin</p></li>
-</ul>
+<div id="plotly-bar-plot" class="section level2">
+<h2>Plotly bar plot</h2>
+<pre class="r"><code>instacart_sub %&gt;% 
+  group_by(department, aisle) %&gt;% 
+  summarise(
+    order_count = n()
+  ) %&gt;% 
+  arrange(order_count) %&gt;% 
+  ungroup() %&gt;% 
+  head(20) %&gt;% 
+  mutate(
+    aisle = str_to_title(aisle),
+    department = str_to_title(department),
+    aisle = fct_reorder(aisle, order_count)
+  ) %&gt;%
+  plot_ly(
+    x = ~ order_count,
+    y = ~ aisle,
+    color = ~ department,
+    type = &quot;bar&quot;,
+    colors = &quot;Accent&quot;
+  ) %&gt;% 
+  layout(
+    title = &quot;Top 20 Least Popular Aisles&quot;,
+    xaxis = list(title = &quot;Number of Ordered Times&quot;),
+    yaxis = list(title = &quot;Name of Aisle&quot;),
+    legend = list(title = list(text = &quot;Department&quot;)),
+    autosize = FALSE
+  )</code></pre>
+<div id="htmlwidget-2186658b22c60619aa64" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2186658b22c60619aa64">{"x":{"visdat":{"f1691d7f4f9b":["function () ","plotlyVisDat"]},"cur_data":"f1691d7f4f9b","attrs":{"f1691d7f4f9b":{"x":{},"y":{},"color":{},"colors":"Accent","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Top 20 Least Popular Aisles","xaxis":{"domain":[0,1],"automargin":true,"title":"Number of Ordered Times"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Name of Aisle","type":"category","categoryorder":"array","categoryarray":["Beauty","Frozen Juice","Baby Accessories","Baby Bath Body Care","Specialty Wines Champagnes","Kitchen Supplies","Ice Cream Toppings","Shave Needs","Skin Care","Eye Ear Care","First Aid","Kosher Foods","Bulk Grains Rice Dried Goods","Bulk Dried Fruits Vegetables","Indian Foods","Facial Care","Deodorants","More Household","Muscles Joints Pain Relief","Packaged Seafood"]},"legend":{"title":{"text":"Department"}},"autosize":false,"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[96],"y":["Specialty Wines Champagnes"],"type":"bar","orientation":"h","name":"Alcohol","marker":{"color":"rgba(127,201,127,1)","line":{"color":"rgba(127,201,127,1)"}},"textfont":{"color":"rgba(127,201,127,1)"},"error_y":{"color":"rgba(127,201,127,1)"},"error_x":{"color":"rgba(127,201,127,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[77,80],"y":["Baby Accessories","Baby Bath Body Care"],"type":"bar","orientation":"h","name":"Babies","marker":{"color":"rgba(184,178,202,1)","line":{"color":"rgba(184,178,202,1)"}},"textfont":{"color":"rgba(184,178,202,1)"},"error_y":{"color":"rgba(184,178,202,1)"},"error_x":{"color":"rgba(184,178,202,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[160,183],"y":["Bulk Grains Rice Dried Goods","Bulk Dried Fruits Vegetables"],"type":"bar","orientation":"h","name":"Bulk","marker":{"color":"rgba(240,187,154,1)","line":{"color":"rgba(240,187,154,1)"}},"textfont":{"color":"rgba(240,187,154,1)"},"error_y":{"color":"rgba(240,187,154,1)"},"error_x":{"color":"rgba(240,187,154,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[71],"y":["Frozen Juice"],"type":"bar","orientation":"h","name":"Frozen","marker":{"color":"rgba(255,232,146,1)","line":{"color":"rgba(255,232,146,1)"}},"textfont":{"color":"rgba(255,232,146,1)"},"error_y":{"color":"rgba(255,232,146,1)"},"error_x":{"color":"rgba(255,232,146,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[105,223],"y":["Kitchen Supplies","More Household"],"type":"bar","orientation":"h","name":"Household","marker":{"color":"rgba(170,178,169,1)","line":{"color":"rgba(170,178,169,1)"}},"textfont":{"color":"rgba(170,178,169,1)"},"error_y":{"color":"rgba(170,178,169,1)"},"error_x":{"color":"rgba(170,178,169,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[155,198],"y":["Kosher Foods","Indian Foods"],"type":"bar","orientation":"h","name":"International","marker":{"color":"rgba(149,93,157,1)","line":{"color":"rgba(149,93,157,1)"}},"textfont":{"color":"rgba(149,93,157,1)"},"error_y":{"color":"rgba(149,93,157,1)"},"error_x":{"color":"rgba(149,93,157,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[226],"y":["Packaged Seafood"],"type":"bar","orientation":"h","name":"Meat Seafood","marker":{"color":"rgba(229,48,104,1)","line":{"color":"rgba(229,48,104,1)"}},"textfont":{"color":"rgba(229,48,104,1)"},"error_y":{"color":"rgba(229,48,104,1)"},"error_x":{"color":"rgba(229,48,104,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[63,123,123,131,135,199,219,225],"y":["Beauty","Shave Needs","Skin Care","Eye Ear Care","First Aid","Facial Care","Deodorants","Muscles Joints Pain Relief"],"type":"bar","orientation":"h","name":"Personal Care","marker":{"color":"rgba(182,93,36,1)","line":{"color":"rgba(182,93,36,1)"}},"textfont":{"color":"rgba(182,93,36,1)"},"error_y":{"color":"rgba(182,93,36,1)"},"error_x":{"color":"rgba(182,93,36,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[120],"y":["Ice Cream Toppings"],"type":"bar","orientation":"h","name":"Snacks","marker":{"color":"rgba(102,102,102,1)","line":{"color":"rgba(102,102,102,1)"}},"textfont":{"color":"rgba(102,102,102,1)"},"error_y":{"color":"rgba(102,102,102,1)"},"error_x":{"color":"rgba(102,102,102,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p>This bar plot shows the top 20 least popular aisles from all
+21departments. For instance, products from the <code>Beauty</code> aisle
+are only ordered 63 times in this 25% random sample of
+<code>instacart</code> dataset.</p>
 </div>
 
 
