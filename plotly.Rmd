@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-I am going to make some plotly plots based on [Instacart](https://p8105.com/dataset_instacart.html).
+I am going to make some plotly plots based on [NY NOAA](https://p8105.com/dataset_noaa.html).
 
 
 ## Load packages and data
@@ -30,71 +30,51 @@ library(RColorBrewer)
 Let's get some data and preprocess it.
 
 ```{r}
-data("instacart")
+data("ny_noaa")
 
 set.seed(12345)
 
-instacart_sub = instacart %>% 
-  sample_frac(0.25)
+ny_noaa_sub = ny_noaa %>% 
+  sample_frac(0.25) %>% 
+  separate(date, into = c("year", "month", "day"), sep = "-", remove = FALSE) %>% 
+  mutate(
+    year = as.numeric(year),
+    month = as.numeric(month),
+    day = as.numeric(day),
+    prcp = ifelse(!is.na(prcp), prcp / 10, NA_real_),
+    tmax = ifelse(!is.na(tmax), as.numeric(tmax) / 10, NA_real_),
+    tmin = ifelse(!is.na(tmin), as.numeric(tmin) / 10, NA_real_)
+  ) %>% 
+  filter(year %in% 2000:2010)
 ```
 
-There are `r nrow(instacart)` observations in the `instacart` dataset. To get a smaller dataset, I would like to take a 25% random sample (`instacart_sub`) from it.
+There are `r nrow(ny_noaa)` observations in the `ny_noaa` dataset. To get a smaller dataset, I would like to take a 25% random sample (`ny_noaa_sub`) from it and further narrow down the data to observations from 2000 to 2010.
 
 
-## Plotly bar plot
+## Plotly line plot
 
 ```{r}
-instacart_sub %>% 
-  group_by(department, aisle) %>% 
+ny_noaa_sub %>% 
+  mutate(
+    date = format(as.Date(date, format = "%Y-%m-%d"), "%Y-%m")
+  ) %>% 
+  group_by(date) %>% 
   summarise(
-    order_count = n()
+    mean_tmin = mean(tmin, na.rm = TRUE)
   ) %>% 
-  arrange(order_count) %>% 
-  ungroup() %>% 
-  head(20) %>% 
-  mutate(
-    aisle = str_to_title(aisle),
-    department = str_to_title(department),
-    aisle = fct_reorder(aisle, order_count)
-  ) %>%
   plot_ly(
-    x = ~ order_count,
-    y = ~ aisle,
-    color = ~ department,
-    type = "bar",
-    colors = "Accent"
+    x = ~ date,
+    y = ~ mean_tmin,
+    type = "scatter",
+    mode = "lines",
+    alpha = .5
   ) %>% 
   layout(
-    title = "Top 20 Least Popular Aisles",
-    xaxis = list(title = "Number of Ordered Times"),
-    yaxis = list(title = "Name of Aisle"),
-    legend = list(title = list(text = "Department")),
-    autosize = FALSE
+    title = "Monthly Average Minimum Temperature from 2000 to 2010",
+    xaxis = list(title = "Date"),
+    yaxis = list(title = "Average Minimum Temperature\n(degrees C)")
   )
 ```
 
-This bar plot shows the top 20 least popular aisles from all `r n_distinct(instacart_sub$department)`departments. For instance, products from the `Beauty` aisle are only ordered 63 times in this 25% random sample of `instacart` dataset.
-
-
-## Plotly box plot
-
-```{r}
-instacart_sub %>% 
-  mutate(
-    order_dow = order_dow + 1,
-    order_dow = lubridate::wday(order_dow, label = TRUE, abbr = FALSE)
-  ) %>% 
-  plot_ly(
-    x = ~ order_dow,
-    y = ~ order_hour_of_day,
-    type = "box"
-  ) %>% 
-  layout(
-    title = "Distribution of Ordered Time on Each Day of Week",
-    xaxis = list(title = "Day of Week"),
-    yaxis = list(title = "Hour of Day")
-  )
-```
-
-This box plot shows the distribution of hour of day that items were ordered on each day of week. We can tell that people tend to place order relatively earlier on Mondays, compared to the other days.
+This line plot shows the monthly average minimum temperature from 2000 to 2010 in `ny_noaa`'s 25% random sample dataset.
 
