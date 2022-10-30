@@ -74,3 +74,27 @@ instacart_sub %>%
 ```
 
 This bar plot shows the top 20 least popular aisles from all `r n_distinct(instacart_sub$department)`departments. For instance, products from the `Beauty` aisle are only ordered 63 times in this 25% random sample of `instacart` dataset.
+
+
+## Plotly box plot
+
+```{r}
+instacart_sub %>% 
+  mutate(
+    order_dow = order_dow + 1,
+    order_dow = lubridate::wday(order_dow, label = TRUE, abbr = FALSE)
+  ) %>% 
+  plot_ly(
+    x = ~ order_dow,
+    y = ~ order_hour_of_day,
+    type = "box"
+  ) %>% 
+  layout(
+    title = "Distribution of Ordered Time on Each Day of Week",
+    xaxis = list(title = "Day of Week"),
+    yaxis = list(title = "Hour of Day")
+  )
+```
+
+This box plot shows the distribution of hour of day that items were ordered on each day of week. We can tell that people tend to place order relatively earlier on Mondays, compared to the other days.
+
