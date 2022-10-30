@@ -78,3 +78,56 @@ ny_noaa_sub %>%
 
 This line plot shows the monthly average minimum temperature from 2000 to 2010 in `ny_noaa`'s 25% random sample dataset.
 
+
+## Plotly box plot
+
+```{r}
+ny_noaa_sub %>% 
+  mutate(
+    month = factor(month.name[month], levels = month.name, ordered = TRUE)
+  ) %>% 
+  plot_ly(
+    x = ~ month,
+    y = ~ tmax,
+    color = ~ month,
+    type = "box",
+    colors = "Set2"
+  ) %>% 
+  layout(
+    title = "Distribution of Maximum Temperature by Month",
+    xaxis = list(title = "Month"),
+    yaxis = list(title = "Maximum Temperature\n(degrees C)")
+  )
+```
+
+This box plot shows the distribution of maximum temperature by month.
+
+
+## Plotly bar plot
+
+```{r}
+ny_noaa_sub %>% 
+  distinct(id, year, month, .keep_all = TRUE) %>% 
+  group_by(year, month) %>% 
+  count() %>% 
+  mutate(
+    month = factor(month.name[month], levels = month.name, ordered = TRUE)
+  ) %>% 
+  plot_ly(
+    x = ~ year,
+    y = ~ n,
+    color = ~ month,
+    type = "bar",
+    colors = "viridis",
+    alpha = .8
+  ) %>% 
+  layout(
+    barmode = "stack",
+    title = "Number of Weather Stations Functioning by Year",
+    xaxis = list(title = "Year"),
+    yaxis = list(title = "Number of Weather Stations"),
+    legend = list(title = list(text = "Month"))
+  )
+```
+
+This bar plot shows the number of unique weather stations in each year in `ny_noaa`'s 25% random sample dataset. Within each year, the monthly number is also provided. We can tell that the number of weather stations included in this dataset tend to increase.
