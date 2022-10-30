@@ -83,7 +83,7 @@ This line plot shows the monthly average minimum temperature from 2000 to 2010 i
 ```{r}
 ny_noaa_sub %>% 
   mutate(
-    month = factor(month.name[month], levels = month.name, ordered = TRUE)
+    month = factor(month.name[month], levels = month.name)
   ) %>% 
   plot_ly(
     x = ~ month,
@@ -95,7 +95,8 @@ ny_noaa_sub %>%
   layout(
     title = "Distribution of Maximum Temperature by Month",
     xaxis = list(title = "Month"),
-    yaxis = list(title = "Maximum Temperature\n(degrees C)")
+    yaxis = list(title = "Maximum Temperature\n(degrees C)"),
+    legend = list(title = list(text = "Month"))
   )
 ```
 

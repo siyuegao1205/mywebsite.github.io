@@ -67,7 +67,7 @@ Column {data-width = 350}
 ```{r}
 ny_noaa_sub %>% 
   mutate(
-    month = factor(month.name[month], levels = month.name, ordered = TRUE)
+    month = factor(month.name[month], levels = month.name)
   ) %>% 
   plot_ly(
     x = ~ month,
@@ -78,7 +78,8 @@ ny_noaa_sub %>%
   ) %>% 
   layout(
     xaxis = list(title = "Month"),
-    yaxis = list(title = "Maximum Temperature\n(degrees C)")
+    yaxis = list(title = "Maximum Temperature\n(degrees C)"),
+    legend = list(title = list(text = "Month"))
   )
 ```
 
