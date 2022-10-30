@@ -47,4 +47,4 @@ Here are some screenshots showing the cozy time we spent together.
 
 ## Other Stuff
 
-I made some plotly plots on [NY NOAA](https://p8105.com/dataset_noaa.html) dataset. Here's a direct [link](plotly.html) to it.
+I made some plotly plots on [NY NOAA](https://p8105.com/dataset_noaa.html) dataset. Here's a direct [link](plotly.html) to it. A dashboard displaying these plots can be found [here](dashboard.html).

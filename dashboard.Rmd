@@ -1,35 +1,20 @@
 ---
-title: "Plotly"
+title: "NY NOAA Dashboard"
 output: 
-  html_document:
-    toc: true
-    toc_float: true
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(
-	echo = TRUE,
-	warning = FALSE,
-	message = FALSE
-)
-```
-
-I am going to make some plotly plots based on [NY NOAA](https://p8105.com/dataset_noaa.html).
-
-
-## Load packages and data
-
-```{r}
 library(tidyverse)
 library(p8105.datasets)
 library(plotly)
 library(RColorBrewer)
+library(flexdashboard)
 ```
 
-
-Let's get some data and preprocess it.
-
-```{r}
+```{r, include = FALSE}
 data("ny_noaa")
 
 set.seed(12345)
@@ -48,10 +33,10 @@ ny_noaa_sub = ny_noaa %>%
   filter(year %in% 2000:2010)
 ```
 
-There are `r nrow(ny_noaa)` observations in the `ny_noaa` dataset. To get a smaller dataset, I would like to take a 25% random sample (`ny_noaa_sub`) from it and further narrow down the data to observations from 2000 to 2010.
+Column {data-width = 650}
+-----------------------------------------------------------------------
 
-
-## Plotly line plot
+### Chart A: Monthly Average Minimum Temperature from 2000 to 2010
 
 ```{r}
 ny_noaa_sub %>% 
@@ -76,10 +61,10 @@ ny_noaa_sub %>%
   )
 ```
 
-This line plot shows the monthly average minimum temperature from 2000 to 2010 in `ny_noaa`'s 25% random sample dataset.
+Column {data-width = 350}
+-----------------------------------------------------------------------
 
-
-## Plotly box plot
+### Chart B: Distribution of Maximum Temperature by Month
 
 ```{r}
 ny_noaa_sub %>% 
@@ -100,10 +85,7 @@ ny_noaa_sub %>%
   )
 ```
 
-This box plot shows the distribution of maximum temperature by month.
-
-
-## Plotly bar plot
+### Chart C: Number of Weather Stations Functioning by Year
 
 ```{r}
 ny_noaa_sub %>% 
@@ -129,10 +111,3 @@ ny_noaa_sub %>%
     legend = list(title = list(text = "Month"))
   )
 ```
-
-This bar plot shows the number of unique weather stations in each year in `ny_noaa`'s 25% random sample dataset. Within each year, the monthly number is also provided. We can tell that the number of weather stations included in this dataset tend to increase.
-
-
-## Dashboard
-
-A dashboard displaying these plots can be found [here](dashboard.html).
